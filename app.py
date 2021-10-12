@@ -8,7 +8,6 @@ from PIL import Image
 
 from flask import Flask, render_template, request, jsonify
 
-
 INIT_TEMPLATE = 'init.html'
 RESULT_TEMPLATE = 'results.html'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
@@ -56,7 +55,6 @@ def init_gui():
 
 @app.route('/process_img', methods=['POST'])
 def process_img():
-
     file_f = request.files['file_front']
     file_s = request.files['file_side']
 
@@ -67,22 +65,24 @@ def process_img():
     cond_2 = allowed_file_s and allowed_file_f
 
     if cond_1 and cond_2:
-
         im_f = parse_file_storage_2_numpy(file_f)
         im_s = parse_file_storage_2_numpy(file_s)
 
-        im_f_out, im_s_out = process_images(im_f, im_s)
+        im_f_out, im_s_out, mass = process_images(im_f, im_s)
 
         im_input_uri = np_array_2_uri(cv.cvtColor(im_f_out, cv.COLOR_BGR2RGB))
         im_output_uri = np_array_2_uri(cv.cvtColor(im_s_out, cv.COLOR_BGR2RGB))
 
-        return render_template('result.html', im_input=im_input_uri, im_output=im_output_uri)
+        return render_template('result.html',
+                               mass=mass,
+                               im_input=im_input_uri,
+                               im_output=im_output_uri)
 
 
 def process_images(im_f, im_s):
     # MOCK
-    kg = 80
-    return f'{kg}kg'
+    kg = 400
+    return im_f, im_s, kg
 
 
 if __name__ == '__main__':

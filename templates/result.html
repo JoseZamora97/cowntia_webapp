@@ -16,6 +16,7 @@
     <div class="d-inline-flex align-items-center">
         <a class="btn btn-primary" href="/">Back</a>
         <h1 class="ml-4">Resultados</h1>
+        <h1 class="ml-4">{{mass}} kg</h1>
     </div>
 </div>
 
@@ -25,12 +26,10 @@
             <div class="col-sm im-show" >
                 <h4>Imagen Frontal</h4>
                 <img id="im_input" src="{{ im_input }}" alt="">
-                {# <img id="im_input" src="{{ url_for('static', filename='image/frontal.jpg') }}"> #}
             </div>
             <div class="col-sm im-show">
                 <h4>Imagen Lateral</h4>
                 <img id="im_output" src="{{ im_output }}" alt="">
-                {# <img id="im_output" src="{{ url_for('static', filename='image/lateral.jpg') }}"> #}
             </div>
         </div>
     </div>
