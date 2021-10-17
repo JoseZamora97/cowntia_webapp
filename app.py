@@ -55,6 +55,9 @@ def init_gui():
 
 @app.route('/process_img', methods=['POST'])
 def process_img():
+
+    size = int(request.form.get('number'))
+
     file_f = request.files['file_front']
     file_s = request.files['file_side']
 
@@ -68,7 +71,7 @@ def process_img():
         im_f = parse_file_storage_2_numpy(file_f)
         im_s = parse_file_storage_2_numpy(file_s)
 
-        im_f_out, im_s_out, mass = process_images(im_f, im_s)
+        im_f_out, im_s_out, mass = process_images(im_f, im_s, size)
 
         im_input_uri = np_array_2_uri(cv.cvtColor(im_f_out, cv.COLOR_BGR2RGB))
         im_output_uri = np_array_2_uri(cv.cvtColor(im_s_out, cv.COLOR_BGR2RGB))
@@ -79,7 +82,7 @@ def process_img():
                                im_output=im_output_uri)
 
 
-def process_images(im_f, im_s):
+def process_images(im_f, im_s, size):
     # MOCK
     kg = 400
     return im_f, im_s, kg

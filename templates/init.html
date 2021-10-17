@@ -23,6 +23,7 @@
     <div class="d-flex flex-fill justify-content-center align-items-center ">
         <div class="d-flex flex-column upload-container justify-content-center align-items-center">
             <h3 class="mb-3">Elige un par de imágenes</h3>
+
             <form method=post class="d-flex flex-column justify-content-center align-items-center"
                   enctype=multipart/form-data action="{{ url_for('process_img') }} ">
 
@@ -36,6 +37,11 @@
                     <input type="file" class="custom-file-input" id="customFileSide" name=file_side required>
                     <label id="customFileLabelSide"
                            class="custom-file-label" for="customFileSide">Imagen lateral</label>
+                </div>
+
+                <div class="form-group-lg">
+                    <label id="numberLabel" for="number">Introduce la anchura de la plantilla (cm)</label>
+                    <input type="number" class="form-control" id="number" value="10" name=number required placeholder="10">
                 </div>
 
                 <div class="mt-3">
