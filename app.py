@@ -77,7 +77,7 @@ def process_img():
         im_output_uri = np_array_2_uri(cv.cvtColor(im_s_out, cv.COLOR_BGR2RGB))
 
         return render_template('result.html',
-                               mass=mass,
+                               mass=round(mass),
                                im_input=im_input_uri,
                                im_output=im_output_uri)
 
